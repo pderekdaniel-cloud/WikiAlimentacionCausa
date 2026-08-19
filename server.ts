@@ -176,18 +176,24 @@ app.post('/api/payments/process', (req, res) => {
 
 // ================= VITE DEV / PRODUCTION MIDDLEWARE =================
 async function startServer() {
-  if (process.env.NODE_ENV !== 'production') {
+  // In production (for example on Render), serve the Vite build from /dist.
+  // We detect the build by checking for dist/index.html so the app also
+  // works even if the hosting provider does not set NODE_ENV automatically.
+  const distPath = path.join(process.cwd(), 'dist');
+  const distIndex = path.join(distPath, 'index.html');
+
+  if (fs.existsSync(distIndex)) {
+    app.use(express.static(distPath));
+    app.get('*', (req, res) => {
+      res.sendFile(distIndex);
+    });
+  } else {
+    // Local development: use Vite middleware.
     const vite = await createViteServer({
       server: { middlewareMode: true, host: '0.0.0.0' },
       appType: 'spa',
     });
     app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
-    });
   }
 
   app.listen(PORT, '0.0.0.0', () => {
