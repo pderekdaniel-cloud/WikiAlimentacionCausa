@@ -1,0 +1,6 @@
+{
+  "name": "Wiki Alimentación",
+  "description": "Wiki colaborativa de alimentación saludable con recetario interactivo, guía nutricional andina, simulador de plato equilibrado y publicación comunitaria de recetas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

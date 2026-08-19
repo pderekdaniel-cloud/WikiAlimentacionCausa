@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --cream: #f5efe2;
+    --paper: #fffbf2;
+    --forest: #1f3b2c;
+    --forest-light: #33604a;
+    --terracotta: #c1512f;
+    --terracotta-dark: #9c3f22;
+    --olive: #748158;
+    --sage: #dfe9d9;
+    --sage-dark: #a7b99a;
+    --ink: #26241d;
+    --sand: #e5d9bf;
+    --sand-dark: #d3c3a0;
+  }
+
+  body {
+    font-family: 'Manrope', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+  }
+
+  h1, h2, h3, h4, .font-serif-fraunces {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+}
+
+.font-fraunces {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.grain-pattern {
+  background-image: radial-gradient(rgba(31, 59, 44, 0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
